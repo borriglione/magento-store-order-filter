@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category   Borriglione
+ * @package    Borriglione_StoreOrderFilter
+ * @copyright  Copyright (c) 2014 André Herrn <info@andre-herrn.de>
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+
+    <modules>
+        <Borriglione_StoreOrderFilter>
+            <version>0.1.0</version>
+        </Borriglione_StoreOrderFilter>
+    </modules>
+
+    <global>
+        <blocks>
+            <storeorderfilter>
+                <class>Borriglione_StoreOrderFilter_Block</class>
+            </storeorderfilter>
+        </blocks>
+
+        <models>
+            <storeorderfilter>
+                <class>Borriglione_StoreOrderFilter_Model</class>
+            </storeorderfilter>
+        </models>
+
+        <helpers>
+            <storeorderfilter>
+                <class>Borriglione_StoreOrderFilter_Helper</class>
+            </storeorderfilter>
+        </helpers>
+    </global>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <Borriglione_StoreOrderFilter>
+                    <files>
+                        <default>Borriglione_StoreOrderFilter.csv</default>
+                    </files>
+                </Borriglione_StoreOrderFilter>
+            </modules>
+        </translate>
+    </adminhtml>
+
+    <frontend>
+        <events>
+            <core_block_abstract_to_html_before>
+                <observers>
+                    <storeorderfilter_filter_orders>
+                        <type>singleton</type>
+                        <class>storeorderfilter/observer</class>
+                        <method>filterFrontendOrders</method>
+                    </storeorderfilter_filter_orders>
+                </observers>
+            </core_block_abstract_to_html_before>
+        </events>
+    </frontend>
+
+    <default>
+        <customer>
+            <account_share>
+                <show_current_store>1</show_current_store>
+            </account_share>
+        </customer>
+    </default>
+</config>
